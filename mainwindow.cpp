@@ -43,11 +43,15 @@ void MainWindow::keyPressEvent(QKeyEvent *event) {
         if (currentTargetText[currentCharacterIndex] == event->text()) {
             qDebug() << "Correct key pressed: " << event->text();
             ++currentCharacterIndex;
+
             if (currentStringNum == 1) {
-                renderTextInStrings(firstString, "empty");
+                renderTextInStrings(ui->firstString, firstString, currentCharacterIndex);
+                // ended editing here!!! todo: do a index cheack for RErender another finished string
             } else {
-                renderTextInStrings("empty", secondString);
+                renderTextInStrings(ui->secondString, secondString, currentCharacterIndex);
             };
+
+
         } else {
             qDebug() << "Incorrect key pressed " << event->text();
         }
@@ -114,15 +118,23 @@ QString formatTextForString(QString text, int currentCharacterIndex) {
     return formatedString;
 };
 
-void MainWindow::renderTextInStrings(QString firstString, QString secondString) {
-    if (firstString != "empty") {
-        ui->firstString->setText(formatTextForString(firstString, currentCharacterIndex));
-    };
-    if (secondString != "empty") {
-        ui->secondString->setText(formatTextForString(secondString, currentCharacterIndex));
-    };
+void MainWindow::renderTextInStrings(QLabel *labelToRenderObj, QString text, int howManyCharactersPressed) {
+    labelToRenderObj->setText(formatTextForString(text, howManyCharactersPressed));
 };
 
+void MainWindow::on_setTextSizeBox_valueChanged(int arg1)
+{
+    qDebug() << arg1;
+    textSize = arg1;
+    if (currentStringNum == 1) {
+        renderTextInStrings(ui->firstString, firstString, currentCharacterIndex);
+        renderTextInStrings(ui->secondString, secondString, 0);
+    } else if (currentStringNum == 2) {
+        renderTextInStrings(ui->secondString, secondString, currentCharacterIndex);
+        renderTextInStrings(ui->firstString , firstString, 0);
+    };
+
+}
 
 void MainWindow::on_getTextLine_returnPressed() {
     // QString inText = ui->getTextLine->text();
@@ -132,8 +144,8 @@ void MainWindow::on_getTextLine_returnPressed() {
     currentText = remainingText1;
     auto [secondStringT, remainingText2] = splitText(currentText);
     currentText = remainingText2;
-    renderTextInStrings(firstStringT, secondStringT);
-
+    renderTextInStrings(ui->firstString, firstStringT, 0);
+    renderTextInStrings(ui->secondString, secondStringT, 0);
     firstString = firstStringT;
     secondString = secondStringT;
 
@@ -143,15 +155,6 @@ void MainWindow::on_getTextLine_returnPressed() {
     qDebug() << "\n\n";
 
 }
-
-
-void MainWindow::on_setTextSizeBox_valueChanged(int arg1)
-{
-    qDebug() << arg1;
-    textSize = arg1;
-    renderTextInStrings(firstString, secondString);
-}
-
 
 void MainWindow::on_settingsButton_clicked()
 {
@@ -171,7 +174,6 @@ void MainWindow::on_settingsButton_clicked()
         ui->setTextSizeBox->deleteLater();
         ui->setTextSizeBox = nullptr;
     };
-
 }
 
 

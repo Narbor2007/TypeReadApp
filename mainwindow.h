@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QKeyEvent>
+#include <QLabel>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -26,7 +27,7 @@ private slots:
 
     void on_setTextSizeBox_valueChanged(int arg1);
 
-    void renderTextInStrings(QString firstString, QString secondString);
+    void renderTextInStrings(QLabel *labelToRenderObj, QString text, int howManyCharactersPressed);
 
     void on_settingsButton_clicked();
 
