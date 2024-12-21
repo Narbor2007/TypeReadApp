@@ -126,7 +126,6 @@ void MainWindow::renderTextInStrings(QString firstString, QString secondString) 
 
 void MainWindow::on_getTextLine_returnPressed() {
     // QString inText = ui->getTextLine->text();
-    ui->getTextLine->setWindowOpacity(50);
 
 
     auto [firstStringT, remainingText1] = splitText(currentText);
