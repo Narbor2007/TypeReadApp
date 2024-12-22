@@ -1,9 +1,0 @@
-/Users/whoami/Desktop/C++ projects/QTC/TypeReadApp/build/Qt_6_8_1_for_macOS-Debug/CMakeFiles/TypeReadApp.dir
-/Users/whoami/Desktop/C++ projects/QTC/TypeReadApp/build/Qt_6_8_1_for_macOS-Debug/CMakeFiles/edit_cache.dir
-/Users/whoami/Desktop/C++ projects/QTC/TypeReadApp/build/Qt_6_8_1_for_macOS-Debug/CMakeFiles/rebuild_cache.dir
-/Users/whoami/Desktop/C++ projects/QTC/TypeReadApp/build/Qt_6_8_1_for_macOS-Debug/CMakeFiles/list_install_components.dir
-/Users/whoami/Desktop/C++ projects/QTC/TypeReadApp/build/Qt_6_8_1_for_macOS-Debug/CMakeFiles/install.dir
-/Users/whoami/Desktop/C++ projects/QTC/TypeReadApp/build/Qt_6_8_1_for_macOS-Debug/CMakeFiles/install/local.dir
-/Users/whoami/Desktop/C++ projects/QTC/TypeReadApp/build/Qt_6_8_1_for_macOS-Debug/CMakeFiles/install/strip.dir
-/Users/whoami/Desktop/C++ projects/QTC/TypeReadApp/build/Qt_6_8_1_for_macOS-Debug/CMakeFiles/TypeReadApp_autogen_timestamp_deps.dir
-/Users/whoami/Desktop/C++ projects/QTC/TypeReadApp/build/Qt_6_8_1_for_macOS-Debug/CMakeFiles/TypeReadApp_autogen.dir
