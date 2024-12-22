@@ -1,0 +1,10 @@
+# ninja log v6
+4	3556	1734826548842330332	/Users/whoami/Desktop/C++ projects/QTC/TypeReadApp/build/Qt_6_8_1_for_macOS-Debug/CMakeFiles/cmake.verify_globs	87ae5f72f2792456
+3556	4951	1734826553738485201	TypeReadApp_autogen/timestamp	89f32211f3249a72
+3556	4951	1734826553738485201	TypeReadApp_autogen/mocs_compilation.cpp	89f32211f3249a72
+3556	4951	1734826553738485201	/Users/whoami/Desktop/C++ projects/QTC/TypeReadApp/build/Qt_6_8_1_for_macOS-Debug/TypeReadApp_autogen/timestamp	89f32211f3249a72
+3556	4951	1734826553738485201	/Users/whoami/Desktop/C++ projects/QTC/TypeReadApp/build/Qt_6_8_1_for_macOS-Debug/TypeReadApp_autogen/mocs_compilation.cpp	89f32211f3249a72
+4959	23741	1734826553796908541	CMakeFiles/TypeReadApp.dir/main.cpp.o	ed74e87e9e33de53
+4957	25157	1734826553795112858	CMakeFiles/TypeReadApp.dir/TypeReadApp_autogen/mocs_compilation.cpp.o	1434a1b7a1c24292
+4960	26230	1734826553798641988	CMakeFiles/TypeReadApp.dir/mainwindow.cpp.o	2381a0a74977199f
+26230	27119	1734826575068959666	TypeReadApp.app/Contents/MacOS/TypeReadApp	5351000c113f9ce0

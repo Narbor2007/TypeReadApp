@@ -242,6 +242,7 @@
   /Users/whoami/Qt/6.8.1/macos/lib/QtGui.framework/Versions/A/Headers/qkeysequence.h \
   /Users/whoami/Qt/6.8.1/macos/lib/QtGui.framework/Versions/A/Headers/qpaintdevice.h \
   /Users/whoami/Qt/6.8.1/macos/lib/QtGui.framework/Versions/A/Headers/qpalette.h \
+  /Users/whoami/Qt/6.8.1/macos/lib/QtGui.framework/Versions/A/Headers/qpicture.h \
   /Users/whoami/Qt/6.8.1/macos/lib/QtGui.framework/Versions/A/Headers/qpixelformat.h \
   /Users/whoami/Qt/6.8.1/macos/lib/QtGui.framework/Versions/A/Headers/qpixmap.h \
   /Users/whoami/Qt/6.8.1/macos/lib/QtGui.framework/Versions/A/Headers/qpointingdevice.h \
@@ -251,6 +252,7 @@
   /Users/whoami/Qt/6.8.1/macos/lib/QtGui.framework/Versions/A/Headers/qrgba64.h \
   /Users/whoami/Qt/6.8.1/macos/lib/QtGui.framework/Versions/A/Headers/qscreen.h \
   /Users/whoami/Qt/6.8.1/macos/lib/QtGui.framework/Versions/A/Headers/qscreen_platform.h \
+  /Users/whoami/Qt/6.8.1/macos/lib/QtGui.framework/Versions/A/Headers/qtextdocument.h \
   /Users/whoami/Qt/6.8.1/macos/lib/QtGui.framework/Versions/A/Headers/qtgui-config.h \
   /Users/whoami/Qt/6.8.1/macos/lib/QtGui.framework/Versions/A/Headers/qtguiexports.h \
   /Users/whoami/Qt/6.8.1/macos/lib/QtGui.framework/Versions/A/Headers/qtguiglobal.h \
@@ -258,7 +260,10 @@
   /Users/whoami/Qt/6.8.1/macos/lib/QtGui.framework/Versions/A/Headers/qvector2d.h \
   /Users/whoami/Qt/6.8.1/macos/lib/QtGui.framework/Versions/A/Headers/qvectornd.h \
   /Users/whoami/Qt/6.8.1/macos/lib/QtGui.framework/Versions/A/Headers/qwindowdefs.h \
+  /Users/whoami/Qt/6.8.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QLabel \
   /Users/whoami/Qt/6.8.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QMainWindow \
+  /Users/whoami/Qt/6.8.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qframe.h \
+  /Users/whoami/Qt/6.8.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qlabel.h \
   /Users/whoami/Qt/6.8.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qmainwindow.h \
   /Users/whoami/Qt/6.8.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qsizepolicy.h \
   /Users/whoami/Qt/6.8.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qtabwidget.h \

@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-8c42290b4b0f53fc7838.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "TypeReadApp",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "TypeReadApp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TypeReadApp-Debug-e994c95f0b2fed853877.json",
+					"name" : "TypeReadApp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TypeReadApp_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TypeReadApp_autogen-Debug-6489f19c1bb01f1e6b6d.json",
+					"name" : "TypeReadApp_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "TypeReadApp_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TypeReadApp_autogen_timestamp_deps-Debug-0fb3d6692c4ed431892b.json",
+					"name" : "TypeReadApp_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/whoami/Desktop/C++ projects/QTC/TypeReadApp/build/Qt_6_8_1_for_macOS-Debug",
+		"source" : "/Users/whoami/Desktop/C++ projects/QTC/TypeReadApp"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}
