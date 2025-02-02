@@ -27,7 +27,7 @@ private slots:
 
     void on_setTextSizeBox_valueChanged(int arg1);
 
-    void renderTextInStrings(QLabel *labelToRenderObj, QString text, int howManyCharactersPressed);
+    void renderTextInStrings(QLabel *labelToRenderObj, QString text, int howManyCharactersPressed, bool pressedWrongCharacter = false);
 
     void on_settingsButton_clicked();
 

@@ -5,8 +5,13 @@
 #include <QStringList>
 #include <QVector>
 #include <QLineEdit>
+#include <QString>
+#include <QCoreApplication>
+#include <QFile>
+#include <QDebug>
 
-QString currentText = "Гори височать на горизонті, їх вершини сяють білосніжними ковпаками, які блискуче відбивають сонячні промені. Внизу, між пагорбами, розкинулися квітучі луки, де на зелених ковдрах трави розсипані яскраві плями жовтих, червоних і синіх кольорів. Струмки, немов срібні нитки, звиваються серед полів, утворюючи мереживо водних шляхів, що ведуть до величної річки. Лісові масиви, як безмежні смарагдові оази, витають у легкому серпанку, що додає їм загадковості і спокою. Навколо панує гармонія природи, і лише спів птахів порушує тишу, наповнюючи повітря мелодійними звуками життя. asdasd asda";
+
+QString currentText = "";
 QString firstString, secondString;
 int currentPressedSymbols = 0;
 int currentStringNum = 1;
@@ -29,6 +34,44 @@ MainWindow::~MainWindow()
 }
 
 
+std::tuple<QString, QString> splitText(QString text) {
+    // Разбиваем строку на слова
+    QStringList words = text.split(" ", Qt::SkipEmptyParts);
+
+    // Векторы для хранения слов
+    QVector<QString> splittedStringV;
+
+    // Добавляем по 5 слов в каждый вектор
+    if (words.size() < 5 && words.size() != 0) {
+        return {text, ""};
+    }else if (words.size() == 0) {
+        return {"", ""};
+    }else if (words.size() >= 5) {
+        for (int i = 0; i < words.size(); ++i) {
+            if (i < 5) {
+                splittedStringV.append(words[i]);
+            } else {
+                break;
+            }
+        }
+
+        // Удаляем распределенные слова из текста
+        words = words.mid(5);
+        QString remainingText = words.join(" ");
+
+        QString splittedString = splittedStringV[0];
+
+        for (int i = 1; i < splittedStringV.size(); i++) {
+            splittedString += " " + splittedStringV[i];
+        };
+
+        // Возвращаем векторы и оставшийся текст
+        return {splittedString, remainingText};
+    };
+    return {"", ""};
+}
+
+
 void MainWindow::keyPressEvent(QKeyEvent *event) {
 
 
@@ -41,76 +84,81 @@ void MainWindow::keyPressEvent(QKeyEvent *event) {
         QChar expectedChar = currentTargetText[currentCharacterIndex];
 
         if (currentTargetText[currentCharacterIndex] == event->text()) {
+
             qDebug() << "Correct key pressed: " << event->text();
+
             ++currentCharacterIndex;
 
-            if (currentStringNum == 1) {
-                renderTextInStrings(ui->firstString, firstString, currentCharacterIndex);
-                // ended editing here!!! todo: do a index cheack for RErender another finished string
-            } else {
-                renderTextInStrings(ui->secondString, secondString, currentCharacterIndex);
+            renderTextInStrings(
+                ( currentStringNum == 1 ? ui->firstString : ui->secondString ),
+                ( currentStringNum == 1 ? firstString : secondString ),
+                  currentCharacterIndex);
+
+            if (currentCharacterIndex >
+                    (currentStringNum == 1 ? firstString.size()*0.8 : secondString.size()*0.8) &&
+                    isAnotherStringFinished) {
+
+                auto [newStringT, currentTextT] = splitText(currentText);
+                (currentStringNum == 1 ? secondString : firstString) = newStringT;
+                currentText = currentTextT;
+
+                renderTextInStrings(
+                    ( currentStringNum == 1 ? ui->secondString : ui->firstString ), (currentStringNum == 1 ? secondString : firstString), 0);
+                isAnotherStringFinished = false;
             };
 
 
+
+            // if (currentStringNum == 1) {
+            //     renderTextInStrings(ui->firstString, firstString, currentCharacterIndex);
+            //     if (currentCharacterIndex > firstString.size()*0.8 && isAnotherStringFinished) {
+
+            //             auto [newStringT, currentTextT] = splitText(currentText);
+            //             secondString = newStringT;
+            //             currentText = currentTextT;
+
+            //             renderTextInStrings(ui->secondString, secondString, 0);
+            //             isAnotherStringFinished = false;
+            //         };
+            // } else {
+            //     renderTextInStrings(ui->secondString, secondString, currentCharacterIndex);
+            //     if (currentCharacterIndex > secondString.size()*0.8 && isAnotherStringFinished) {
+            //         auto [newStringT, currentTextT] = splitText(currentText);
+            //         firstString = newStringT;
+            //         currentText = currentTextT;
+            //         renderTextInStrings(ui->firstString, firstString, 0);
+            //         isAnotherStringFinished = false;
+            //     };
         } else {
             qDebug() << "Incorrect key pressed " << event->text();
-        }
+
+            if (event->text() != "") {
+                renderTextInStrings((currentStringNum==1 ? ui->firstString : ui->secondString), (currentStringNum==1 ? firstString : secondString), currentCharacterIndex, true);
+            };
+        };
     } else {
         qDebug() << "End of string.";
         currentStringNum = (currentStringNum == 1 ? 2 : 1);
         currentCharacterIndex = 0;
+        isAnotherStringFinished = true;
     }
 }
 
 
-std::tuple<QString, QString> splitText(QString text) {
-    // Разбиваем строку на слова
-    QStringList words = text.split(" ", Qt::SkipEmptyParts);
 
-    // Векторы для хранения слов
-    QVector<QString> firstStringV;
-    QVector<QString> secondStringV;
-
-    // Добавляем по 5 слов в каждый вектор
-    if (words.size() < 5 && words.size() != 0) {
-        return {text, ""};
-    }else if (words.size() == 0) {
-        return {"", ""};
-    }else if (words.size() >= 5) {
-        for (int i = 0; i < words.size(); ++i) {
-            if (i < 5) {
-                firstStringV.append(words[i]);
-            } else {
-                break;
-            }
-        }
-
-        // Удаляем распределенные слова из текста
-        words = words.mid(5);
-        QString remainingText = words.join(" ");
-
-        QString firstString = firstStringV[0];
-
-        for (int i = 1; i < firstStringV.size(); i++) {
-            firstString += " " + firstStringV[i];
-        };
-
-        // Возвращаем векторы и оставшийся текст
-        return {firstString, remainingText};
-    };
-    return {"", ""};
-}
-
-
-QString formatTextForString(QString text, int currentCharacterIndex) {
+QString formatTextForString(QString text, int currentCharacterIndex, bool pressedWrongCharacter = false) {
 
     QString formatedString;
     formatedString += "<html><head/><body><p><span style=\" font-size:"+ QString::number(textSize) +"pt; color:#020202;\">";
     for (int i = 0; i < currentCharacterIndex; i++) {
         formatedString += text[i];
     };
-    formatedString += "</span><span style=\" font-size:"+ QString::number(textSize) +"pt; color:#222222;\">";
-    for (int i = currentCharacterIndex; i < text.size(); i++) {
+    formatedString += "</span>";
+    if (currentCharacterIndex < text.size()) {
+        formatedString += "<span style=\" font-size:"+ QString::number(textSize) +"pt; color:"+(pressedWrongCharacter ? "#D84040" : "#959595")+";\">" + text[currentCharacterIndex] + "</span>";
+        };
+    formatedString += "<span style=\" font-size:"+ QString::number(textSize) +"pt; color:#959595;\">";
+    for (int i = currentCharacterIndex+1; i < text.size(); i++) {
         formatedString += text[i];
     };
     formatedString += "</span></p></body></html>";
@@ -118,27 +166,28 @@ QString formatTextForString(QString text, int currentCharacterIndex) {
     return formatedString;
 };
 
-void MainWindow::renderTextInStrings(QLabel *labelToRenderObj, QString text, int howManyCharactersPressed) {
-    labelToRenderObj->setText(formatTextForString(text, howManyCharactersPressed));
+void MainWindow::renderTextInStrings(QLabel *labelToRenderObj, QString text, int howManyCharactersPressed, bool pressedWrongCharacter) {
+    labelToRenderObj->setText(formatTextForString(text, howManyCharactersPressed, pressedWrongCharacter));
 };
 
 void MainWindow::on_setTextSizeBox_valueChanged(int arg1)
 {
     qDebug() << arg1;
-    textSize = arg1;
-    if (currentStringNum == 1) {
-        renderTextInStrings(ui->firstString, firstString, currentCharacterIndex);
-        renderTextInStrings(ui->secondString, secondString, 0);
-    } else if (currentStringNum == 2) {
-        renderTextInStrings(ui->secondString, secondString, currentCharacterIndex);
-        renderTextInStrings(ui->firstString , firstString, 0);
+    if (textSize != arg1) {
+        textSize = arg1;
+        if (currentStringNum == 1) {
+            renderTextInStrings(ui->firstString, firstString, currentCharacterIndex);
+            renderTextInStrings(ui->secondString, secondString, (isAnotherStringFinished ? secondString.size() : 0));
+        } else if (currentStringNum == 2) {
+            renderTextInStrings(ui->secondString, secondString, currentCharacterIndex);
+            renderTextInStrings(ui->firstString , firstString, (isAnotherStringFinished ? firstString.size() : 0));
+        };
     };
-
 }
 
 void MainWindow::on_getTextLine_returnPressed() {
-    // QString inText = ui->getTextLine->text();
-
+    QString inText = ui->getTextLine->text();
+    currentText = inText;
 
     auto [firstStringT, remainingText1] = splitText(currentText);
     currentText = remainingText1;
@@ -153,6 +202,7 @@ void MainWindow::on_getTextLine_returnPressed() {
     qDebug() << "Second vector:" << secondStringT;
     qDebug() << "Remaining text:" << currentText;
     qDebug() << "\n\n";
+    on_settingsButton_clicked();
 
 }
 

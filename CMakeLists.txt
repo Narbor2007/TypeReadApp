@@ -51,6 +51,11 @@ endif()
 
 target_link_libraries(TypeReadApp PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
+
+# find_package(PkgConfig REQUIRED)
+# pkg_check_modules(MINIZIP REQUIRED minizip)
+# target_link_libraries(TypeReadApp PRIVATE ${MINIZIP_LIBRARIES})
+
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
