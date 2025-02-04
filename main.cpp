@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "choisemodewindow.h"
 
 #include <QApplication>
 #include <QLocale>
@@ -19,6 +20,8 @@ int main(int argc, char *argv[])
         }
     }
     MainWindow w;
-    w.show();
+    // w.show();
+    ChoiseModeWindow c;
+    c.show();
     return a.exec();
 }

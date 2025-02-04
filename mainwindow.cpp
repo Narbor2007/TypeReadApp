@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include <QDebug>
+#include <QLabel>
 #include <QString>
 #include <QStringList>
 #include <QVector>
@@ -11,6 +12,8 @@
 #include <QDebug>
 
 
+
+
 QString currentText = "";
 QString firstString, secondString;
 int currentPressedSymbols = 0;
@@ -19,12 +22,45 @@ int currentCharacterIndex = 0;
 bool isAnotherStringFinished = false;
 int textSize = 36;
 
+class CharObj {
+public:
+    QChar symbol;
+    bool isTyped = false;
+    bool isWrong = false;
+    CharObj(QChar arg1) {
+        symbol = arg1;
+    };
+
+};
+
+class TextString{
+private:
+    QLabel *label;
+    QChar charsArr[50];
+public:
+
+void connect(QLabel* labelAdress) {
+    label = labelAdress;
+    };
+
+void splitTextByWords(QString* text) {
+
+};
+
+void render() {
+
+    };
+
+};
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    TextString firstString;
+    Text
+    (currentText);
 
 }
 
@@ -47,6 +83,8 @@ std::tuple<QString, QString> splitText(QString text) {
     }else if (words.size() == 0) {
         return {"", ""};
     }else if (words.size() >= 5) {
+
+
         for (int i = 0; i < words.size(); ++i) {
             if (i < 5) {
                 splittedStringV.append(words[i]);
@@ -73,8 +111,6 @@ std::tuple<QString, QString> splitText(QString text) {
 
 
 void MainWindow::keyPressEvent(QKeyEvent *event) {
-
-
 
     QString currentTargetText = (currentStringNum == 1 ? firstString : secondString);
 
@@ -107,28 +143,6 @@ void MainWindow::keyPressEvent(QKeyEvent *event) {
                 isAnotherStringFinished = false;
             };
 
-
-
-            // if (currentStringNum == 1) {
-            //     renderTextInStrings(ui->firstString, firstString, currentCharacterIndex);
-            //     if (currentCharacterIndex > firstString.size()*0.8 && isAnotherStringFinished) {
-
-            //             auto [newStringT, currentTextT] = splitText(currentText);
-            //             secondString = newStringT;
-            //             currentText = currentTextT;
-
-            //             renderTextInStrings(ui->secondString, secondString, 0);
-            //             isAnotherStringFinished = false;
-            //         };
-            // } else {
-            //     renderTextInStrings(ui->secondString, secondString, currentCharacterIndex);
-            //     if (currentCharacterIndex > secondString.size()*0.8 && isAnotherStringFinished) {
-            //         auto [newStringT, currentTextT] = splitText(currentText);
-            //         firstString = newStringT;
-            //         currentText = currentTextT;
-            //         renderTextInStrings(ui->firstString, firstString, 0);
-            //         isAnotherStringFinished = false;
-            //     };
         } else {
             qDebug() << "Incorrect key pressed " << event->text();
 
@@ -186,6 +200,10 @@ void MainWindow::on_setTextSizeBox_valueChanged(int arg1)
 }
 
 void MainWindow::on_getTextLine_returnPressed() {
+    currentPressedSymbols = 0;
+    currentStringNum = 1;
+    currentCharacterIndex = 0;
+    isAnotherStringFinished = false;
     QString inText = ui->getTextLine->text();
     currentText = inText;
 

@@ -23,6 +23,8 @@ protected:
     void keyPressEvent(QKeyEvent *event) override;
 
 private slots:
+    class TextString;
+
     void on_getTextLine_returnPressed();
 
     void on_setTextSizeBox_valueChanged(int arg1);
